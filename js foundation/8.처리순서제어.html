@@ -4,15 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    * {margin: 0; padding: 0; list-style: none;}
+    body {padding: 30px;}
+    button {margin-right: 10px; font-size: 50px; font-weight: 600;}
+    button:first-child {border: 5px solid lime; background-color: greenyellow;}
+    button:nth-child(2) {border: 5px solid blue; background-color: deepskyblue;}
+    button:last-child {border: 5px solid red; background-color: hotpink;}
+  </style>
 </head>
 <body>
-  <script>
-    //prompt()를 이용하여 사용자에게 메뉴를 입력하도록 요청하고, 입력한 값이 console.log()로
-    //ㅇㅇㅇㅇ를 고르셨습니다 라고 출력되도록 만들어 보세요. 
-    //단, 반드시 함수를 이용해서 만들어야합니다.-------------------------------------
+  <header></header>
+  <div class="main">
+    <button>메뉴판 보기</button>
+    <button>메뉴등록</button>
+    <button>메뉴삭제</button>
+  </div>
+  <footer></footer>
 
-    //이번에는 입력한 메뉴별로 가격을 부여주어야 합니다. 김치찌개를 입력했을 경우
-    //"김치찌개를 고르셨습니다. 가격은 7,000원 입니다."라고 출력되도록 코드를 고쳐보세요.
+  <script>
+    //1020 메뉴 등록, 가격보기 만들기(화면에 출력하기 ver.)
+    
+
+    //1029 메뉴 등록, 가격보기 만들기(console.log ver.)
+    //메뉴등록이라는 링크를 클릭하면 메뉴를 "메뉴판"객체에 메뉴를 추가할 수 있도록 만들어 보세요.---------------
 
     var 메뉴판 = {
       김치찌개 : 7000,
@@ -21,9 +36,117 @@
       피자 : 22000
     }
 
-    var 고른메뉴 = prompt("김치찌개/ 라면/ 치킨/ 피자 중 하나를 적으세요.");
+    const menuBoard = document.querySelector("button:first-child");
+    const menuAdd = document.querySelector("button:nth-child(2)");
+    const menuDelete = document.querySelector("button:last-child");
 
-    
+    menuBoard.addEventListener('click', howMuchWork);
+    menuAdd.addEventListener('click', addWork);
+    menuDelete.addEventListener('click', deleteWork);
+
+    function deleteWork() {
+      var 삭제하고싶은메뉴 = prompt("삭제하고 싶은 메뉴를 입력하세요. *문자만 입력하세요. X숫자X*");
+      if(삭제하고싶은메뉴 === null){
+        console.log("취소하셨습니다.");
+        return;
+      }else if(삭제하고싶은메뉴 === ""){
+        console.log("아무것도 입력하지 않았습니다. 삭제를 원하신다면 다시 입력해주세요.");
+        return;
+      }else if(isNaN(삭제하고싶은메뉴) && 삭제하고싶은메뉴 in 메뉴판){
+        delete 메뉴판[삭제하고싶은메뉴];
+        console.log("메뉴 삭제가 완료되었습니다.")
+        console.log(메뉴판);
+      }else{
+        console.log("다시 입력해주세요.");
+        return;
+      }
+    }
+
+    function howMuchWork() {
+      console.log(메뉴판);
+    }
+
+    function addWork() {
+      var 추가하고싶은메뉴 = prompt("추가하고 싶은 메뉴를 등록하세요.");
+      if(추가하고싶은메뉴 === null){
+        console.log("메뉴 추가를 취소하셨습니다.")
+        return;
+      }else if(추가하고싶은메뉴 === ""){
+        console.log("아무것도 입력하지 않았습니다. 추가를 원하신다면 다시 입력해주세요.")
+        return;
+      }else if(추가하고싶은메뉴 in 메뉴판){
+        console.log("이미 등록된 메뉴입니다. 다시 입력해주세요. *가격 변경을 원하신다면 삭제 후 재등록 해주세요.*")
+        return;
+      }else if(isNaN(추가하고싶은메뉴)){
+        메뉴판[추가하고싶은메뉴] = "";
+        console.log("메뉴 추가가 완료되었습니다.")
+        console.log(메뉴판);
+        var 추가한메뉴가격 = prompt("추가한 메뉴의 가격을 등록해주세요. *숫자만 입력하세요.*");
+      }else{
+        console.log("다시 입력해주세요.");
+        return;
+      }
+
+      if(추가한메뉴가격 === null){
+        console.log("메뉴가격 추가를 취소하셨습니다.")
+        return;
+      }else if(추가한메뉴가격 === ""){
+        console.log("아무것도 입력하지않았습니다. 추가를 원하신다면 다시 입력해주세요.")
+        return;
+      }else if(!isNaN(추가한메뉴가격)){
+        메뉴판[추가하고싶은메뉴] = Number(추가한메뉴가격);
+        console.log("메뉴가격 추가가 완료되었습니다.")
+        console.log(메뉴판);
+      }else{
+        console.log("다시 입력해주세요.");
+        return;
+      }
+    };
+
+
+    //prompt()를 이용하여 사용자에게 메뉴를 입력하도록 요청하고, 입력한 값이 console.log()로
+    //ㅇㅇㅇㅇ를 고르셨습니다 라고 출력되도록 만들어 보세요. 
+    //단, 반드시 함수를 이용해서 만들어야합니다.-------------------------------------
+
+    //이번에는 입력한 메뉴별로 가격을 부여주어야 합니다. 김치찌개를 입력했을 경우
+    //"김치찌개를 고르셨습니다. 가격은 7,000원 입니다."라고 출력되도록 코드를 고쳐보세요.
+
+    // var 메뉴판 = {
+    //   김치찌개 : 7000,
+    //   라면 : 3000,
+    //   치킨 : 18000,
+    //   피자 : 22000
+    // }
+
+    // var 고른메뉴 = prompt("김치찌개/ 라면/ 치킨/ 피자 중 하나를 고르세요.");
+    // //console.log(typeof 고른메뉴); //string
+
+    // 계산(고른메뉴);
+
+    // function 계산(주문들어옴) {
+    //   if(주문들어옴 === null){
+    //     console.log("취소를 누르셨습니다. 다시 입력하세요.");
+    //   }else if(주문들어옴 === ""){
+    //     console.log("아무것도 입력하지 않았습니다. 다시 입력하세요.")
+    //   }else if(주문들어옴 in 메뉴판){
+    //   console.log(`${주문들어옴} 고르셨습니다. 가격은 ${메뉴판[주문들어옴]}원 입니다.`);
+    //   }else{
+    //     console.log("제발 예시 중에 하나를 골라주세요.")
+    //   }
+    // }
+    //백틱으로 쓸 때는 .가 안 먹히고 []를 써야 되고 []안에는 ""쓰면 안 됨. 왜 일까??
+    //prompt로 받아온 게 문자열이기 때문에 .으로 문자열 접근 안 됨
+    //괄호표기법으로 메뉴판["주문들어옴"] 여기서 이미 "김치찌개"이므로 메뉴판[주문들어옴] 이렇게 되는 것이다
+
+    //괄호 표기법 실험------
+    // var 특기 = {
+    //   가르치기 : "거의매일",
+    //   배우기 : "코드"
+    // }
+
+    // console.log(특기.가르치기);
+    // 특기["안녕"] = "하이하이";
+    // console.log(특기["가르치기"]);
 
     //배열로 하기--------------------------------
     // var 메뉴판 = ["김치찌개", "라면", "치킨", "피자"];
