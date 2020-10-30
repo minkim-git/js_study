@@ -11,97 +11,115 @@
     button:first-child {border: 5px solid lime; background-color: greenyellow;}
     button:nth-child(2) {border: 5px solid blue; background-color: deepskyblue;}
     button:last-child {border: 5px solid red; background-color: hotpink;}
+    .text {border: 1px solid red;}
   </style>
 </head>
 <body>
   <header></header>
   <div class="main">
-    <button>메뉴판 보기</button>
+    <!-- <button>메뉴판 보기</button>
     <button>메뉴등록</button>
-    <button>메뉴삭제</button>
+    <button>메뉴삭제</button> -->
   </div>
+  <div class="text"></div>
   <footer></footer>
 
   <script>
     //1020 메뉴 등록, 가격보기 만들기(화면에 출력하기 ver.)
-    
+    const main = document.querySelector(".main");
+    const div = document.createElement("div");
+    div.appendChild(main);
+    var menus = document.querySelector('.text');
 
-    //1029 메뉴 등록, 가격보기 만들기(console.log ver.)
-    //메뉴등록이라는 링크를 클릭하면 메뉴를 "메뉴판"객체에 메뉴를 추가할 수 있도록 만들어 보세요.---------------
-
-    var 메뉴판 = {
+    menus.innerText = '<h1>김치찌개</h1>';
+    var menulist = {
       김치찌개 : 7000,
       라면 : 3000,
       치킨 : 18000,
       피자 : 22000
     }
 
-    const menuBoard = document.querySelector("button:first-child");
-    const menuAdd = document.querySelector("button:nth-child(2)");
-    const menuDelete = document.querySelector("button:last-child");
+    console.dir(menulist);
+    //input등 이용하기
+    //.text 부분 html console.dir로 찍어서 돔 확인해서 활용하기
 
-    menuBoard.addEventListener('click', howMuchWork);
-    menuAdd.addEventListener('click', addWork);
-    menuDelete.addEventListener('click', deleteWork);
 
-    function deleteWork() {
-      var 삭제하고싶은메뉴 = prompt("삭제하고 싶은 메뉴를 입력하세요. *문자만 입력하세요. X숫자X*");
-      if(삭제하고싶은메뉴 === null){
-        console.log("취소하셨습니다.");
-        return;
-      }else if(삭제하고싶은메뉴 === ""){
-        console.log("아무것도 입력하지 않았습니다. 삭제를 원하신다면 다시 입력해주세요.");
-        return;
-      }else if(isNaN(삭제하고싶은메뉴) && 삭제하고싶은메뉴 in 메뉴판){
-        delete 메뉴판[삭제하고싶은메뉴];
-        console.log("메뉴 삭제가 완료되었습니다.")
-        console.log(메뉴판);
-      }else{
-        console.log("다시 입력해주세요.");
-        return;
-      }
-    }
+    //1029 메뉴 등록, 가격보기 만들기(console.log ver.)
+    //메뉴등록이라는 링크를 클릭하면 메뉴를 "메뉴판"객체에 메뉴를 추가할 수 있도록 만들어 보세요.---------------
 
-    function howMuchWork() {
-      console.log(메뉴판);
-    }
+    // var 메뉴판 = {
+    //   김치찌개 : 7000,
+    //   라면 : 3000,
+    //   치킨 : 18000,
+    //   피자 : 22000
+    // }
 
-    function addWork() {
-      var 추가하고싶은메뉴 = prompt("추가하고 싶은 메뉴를 등록하세요.");
-      if(추가하고싶은메뉴 === null){
-        console.log("메뉴 추가를 취소하셨습니다.")
-        return;
-      }else if(추가하고싶은메뉴 === ""){
-        console.log("아무것도 입력하지 않았습니다. 추가를 원하신다면 다시 입력해주세요.")
-        return;
-      }else if(추가하고싶은메뉴 in 메뉴판){
-        console.log("이미 등록된 메뉴입니다. 다시 입력해주세요. *가격 변경을 원하신다면 삭제 후 재등록 해주세요.*")
-        return;
-      }else if(isNaN(추가하고싶은메뉴)){
-        메뉴판[추가하고싶은메뉴] = "";
-        console.log("메뉴 추가가 완료되었습니다.")
-        console.log(메뉴판);
-        var 추가한메뉴가격 = prompt("추가한 메뉴의 가격을 등록해주세요. *숫자만 입력하세요.*");
-      }else{
-        console.log("다시 입력해주세요.");
-        return;
-      }
+    // const menuBoard = document.querySelector("button:first-child");
+    // const menuAdd = document.querySelector("button:nth-child(2)");
+    // const menuDelete = document.querySelector("button:last-child");
 
-      if(추가한메뉴가격 === null){
-        console.log("메뉴가격 추가를 취소하셨습니다.")
-        return;
-      }else if(추가한메뉴가격 === ""){
-        console.log("아무것도 입력하지않았습니다. 추가를 원하신다면 다시 입력해주세요.")
-        return;
-      }else if(!isNaN(추가한메뉴가격)){
-        메뉴판[추가하고싶은메뉴] = Number(추가한메뉴가격);
-        console.log("메뉴가격 추가가 완료되었습니다.")
-        console.log(메뉴판);
-      }else{
-        console.log("다시 입력해주세요.");
-        return;
-      }
-    };
+    // menuBoard.addEventListener('click', howMuchWork);
+    // menuAdd.addEventListener('click', addWork);
+    // menuDelete.addEventListener('click', deleteWork);
+
+    // function deleteWork() {
+    //   var 삭제하고싶은메뉴 = prompt("삭제하고 싶은 메뉴를 입력하세요. *문자만 입력하세요. X숫자X*");
+    //   if(삭제하고싶은메뉴 === null){
+    //     console.log("취소하셨습니다.");
+    //     return;
+    //   }else if(삭제하고싶은메뉴 === ""){
+    //     console.log("아무것도 입력하지 않았습니다. 삭제를 원하신다면 다시 입력해주세요.");
+    //     return;
+    //   }else if(isNaN(삭제하고싶은메뉴) && 삭제하고싶은메뉴 in 메뉴판){
+    //     delete 메뉴판[삭제하고싶은메뉴];
+    //     console.log("메뉴 삭제가 완료되었습니다.")
+    //     console.log(메뉴판);
+    //   }else{
+    //     console.log("다시 입력해주세요.");
+    //     return;
+    //   }
+    // }
+
+    // function howMuchWork() {
+    //   console.log(메뉴판);
+    // }
+
+    // function addWork() {
+    //   var 추가하고싶은메뉴 = prompt("추가하고 싶은 메뉴를 등록하세요.");
+    //   if(추가하고싶은메뉴 === null){
+    //     console.log("메뉴 추가를 취소하셨습니다.")
+    //     return;
+    //   }else if(추가하고싶은메뉴 === ""){
+    //     console.log("아무것도 입력하지 않았습니다. 추가를 원하신다면 다시 입력해주세요.")
+    //     return;
+    //   }else if(추가하고싶은메뉴 in 메뉴판){
+    //     console.log("이미 등록된 메뉴입니다. 다시 입력해주세요. *가격 변경을 원하신다면 삭제 후 재등록 해주세요.*")
+    //     return;
+    //   }else if(isNaN(추가하고싶은메뉴)){
+    //     메뉴판[추가하고싶은메뉴] = "";
+    //     console.log("메뉴 추가가 완료되었습니다.")
+    //     console.log(메뉴판);
+    //     var 추가한메뉴가격 = prompt("추가한 메뉴의 가격을 등록해주세요. *숫자만 입력하세요.*");
+    //   }else{
+    //     console.log("다시 입력해주세요.");
+    //     return;
+    //   }
+
+    //   if(추가한메뉴가격 === null){
+    //     console.log("메뉴가격 추가를 취소하셨습니다.")
+    //     return;
+    //   }else if(추가한메뉴가격 === ""){
+    //     console.log("아무것도 입력하지않았습니다. 추가를 원하신다면 다시 입력해주세요.")
+    //     return;
+    //   }else if(!isNaN(추가한메뉴가격)){
+    //     메뉴판[추가하고싶은메뉴] = Number(추가한메뉴가격);
+    //     console.log("메뉴가격 추가가 완료되었습니다.")
+    //     console.log(메뉴판);
+    //   }else{
+    //     console.log("다시 입력해주세요.");
+    //     return;
+    //   }
+    // };
 
 
     //prompt()를 이용하여 사용자에게 메뉴를 입력하도록 요청하고, 입력한 값이 console.log()로
