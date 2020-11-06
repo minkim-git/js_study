@@ -7,9 +7,51 @@
 </head>
 <body>
   <script>
-  //forEach(), map(), join(), concat() 실습-------------------------------------
+  //배열도구 forEach(), map(), join(), concat() 실험-------------------------------------
 
-  //forEach()
+  //concat()을 사용해보자------------------------
+  const 실험1 = ["녹차", "커피", "율무차", "코코아"];
+  const 실험2 = ["스타벅스", "이디야", "할리스", "투썸"];
+  const 배열합치는도구 = 실험1.concat(실험2);
+  console.log(배열합치는도구);
+
+
+  //join()을 사용해보자-----------------
+  // const kda = ["pop/star", "the baddest", "giant", "More"];
+  // // const 모든노래합치기 = kda.join();
+  // // console.log(모든노래합치기);
+  // //join()은 배열에 있는 데이터들을 문자열로 합쳐서 보여주는 도구이다.
+  // const 모든노래합치기 = kda.join("*&&^&");
+  // console.log(모든노래합치기);
+  //join() argumnet로 원하는 문자를 넣으면 사이사이에 넣어서 다시 합쳐서 보여준다.
+
+  
+  //map()을 사용해보자-------------------
+  // 캐릭터 = ["피글렛", "푸우", "이오르", "무민"];
+
+  // 캐릭터.map(function(데이터, 인덱스넘버, 객체) {
+  //   console.log(데이터);
+  //   console.log(인덱스넘버);
+  //   console.log(객체);
+  // });
+
+  //map()에서 return을 사용해보자
+  // 캐릭터 = ["피글렛", "푸우", "이오르", "무민"];
+
+  // const 캐릭터저장 = 캐릭터.map(function(데이터, 인덱스넘버, 객체) {
+  //   console.log(데이터);
+  //   console.log(인덱스넘버);
+  //   console.log(객체);
+  //   return 캐릭터[인덱스넘버] + "귀여워";
+  // });
+
+  // console.log(캐릭터저장);
+
+  //map()은 forEach()와 다르게 return이 된다! 둘다 배열을 훑어서 값을 잘 가져오지만 return할 때의 차이가 있었다.
+
+
+
+  //forEach()-----------
   // var 취미 = ["독서","영화감상","운동","만들기"]; 
   // 취미.forEach(function(a, b, c){ //배열 훑어서 값 가져옴
   // console.log(a); //첫번째 파라미터 : 배열 훑어서 각각의 데이터값 가져옴
